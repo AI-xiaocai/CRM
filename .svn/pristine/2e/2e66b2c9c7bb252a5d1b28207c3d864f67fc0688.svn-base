@@ -1,0 +1,32 @@
+package zhan.dao;
+
+import java.util.List;
+
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+
+import zhan.domain.Customer;
+
+public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
+
+	//添加客户
+	public void add(Customer customer) {
+		super.getHibernateTemplate().save(customer);
+	}
+
+	//查询客户列表
+	public List<Customer> findAll() {
+		return (List<Customer>) super.getHibernateTemplate().find("from Customer");
+	}
+
+	//根据Cid查询客户
+	public Customer findCustomerByCid(int cid) {
+		return super.getHibernateTemplate().get(Customer.class, cid);
+	}
+
+	//删除客户
+	public void delete(Customer c) {
+		super.getHibernateTemplate().delete(c);
+	}
+
+	
+}

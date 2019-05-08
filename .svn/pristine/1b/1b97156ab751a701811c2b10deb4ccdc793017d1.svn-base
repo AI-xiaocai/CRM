@@ -1,0 +1,38 @@
+package zhan.service;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import zhan.dao.CustomerDao;
+import zhan.domain.Customer;
+
+@Transactional
+public class CustomerService {
+	@Resource(name="customerDao")
+	private CustomerDao customerDao; //注入CustomerDao对象
+
+	public void add(Customer customer) { //添加客户
+		customerDao.add(customer);
+	}
+
+	public List<Customer> findAll() { //查询客户列表
+		return customerDao.findAll();
+	}
+
+	public Customer findCustomerByCid(int cid) { //通过Cid查询客户
+		return customerDao.findCustomerByCid(cid);
+	}
+
+	public void delete(Customer c) { //删除客户
+		customerDao.delete(c);
+	}
+
+	public void update(Customer customer) { //修改客户
+		customerDao.update(customer);
+	}
+
+	
+}

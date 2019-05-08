@@ -1,0 +1,15 @@
+package zhan.dao;
+
+import java.util.List;
+
+import zhan.domain.LinkMan;
+
+public interface LinkManDao {
+
+	public void add(LinkMan linkMan);
+
+	public List<LinkMan> findAll();
+
+	public List<LinkMan> listCondition(LinkMan linkMan);
+
+}

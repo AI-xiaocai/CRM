@@ -1,0 +1,6 @@
+package zhan.dao;
+
+public interface CustomerDao {
+
+
+}

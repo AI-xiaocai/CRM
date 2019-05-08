@@ -1,0 +1,14 @@
+package zhan.action;
+
+import javax.annotation.Resource;
+import com.opensymphony.xwork2.ActionSupport;
+
+import zhan.service.CustomerService;
+
+public class CustomerAction extends ActionSupport {
+
+	@Resource(name="customerService")
+	private CustomerService customerService; //◊¢»ÎCustomerService∂‘œÛ
+	
+	
+}

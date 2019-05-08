@@ -1,0 +1,81 @@
+package zhan.dao;
+
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+
+import zhan.domain.Customer;
+import zhan.domain.Dict;
+
+public class CustomerDaoImpl extends BaseDaoImpl<Customer> implements CustomerDao{
+
+	//添加客户
+//	public void add(Customer customer) {
+//		super.getHibernateTemplate().save(customer);
+//	}
+
+	//查询客户列表
+//	public List<Customer> findAll() {
+//		return (List<Customer>) super.getHibernateTemplate().find("from Customer");
+//	}
+
+	//根据Cid查询客户
+//	public Customer findCustomerByCid(int cid) {
+//		return super.getHibernateTemplate().get(Customer.class, cid);
+//	}
+
+	//删除客户
+//	public void delete(Customer c) {
+//		super.getHibernateTemplate().delete(c);
+//	}
+
+	//修改客户
+//	public void update(Customer customer) {
+//		super.getHibernateTemplate().update(customer);
+//	}
+
+	//查询总记录数
+	public int getTotalCount() {
+		List<Object> list = (List<Object>) super.getHibernateTemplate().find("select count(*) from Customer");
+		if (list != null && list.size() != 0) {
+			Long num = (Long) list.get(0);
+			return num.intValue();
+		}
+		return 0;
+	}
+
+	//查询指定页客户列表集合(使用离线对象和hibernateTemplate的方法实现)
+	public List<Customer> getList(int beginIndex, int pageSize) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Customer.class);
+		return (List<Customer>) super.getHibernateTemplate().findByCriteria(criteria, beginIndex, pageSize);
+	}
+
+	//条件查询客户(使用离线对象和hibernateTemplate的方法实现)
+	public List<Customer> listCondition(Customer customer) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Customer.class);
+		criteria.add(Restrictions.like("custName", "%" + customer.getCustName() + "%"));
+		return (List<Customer>) super.getHibernateTemplate().findByCriteria(criteria);
+	}
+
+	 //多条件查询
+	public List<Customer> moreCondition(Customer customer) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Customer.class);
+		if (customer.getCustName() != null && !"".equals(customer.getCustName())) {
+			criteria.add(Restrictions.like("custName", "%" + customer.getCustName() + "%"));
+		}
+		if (customer.getDictCustLevel().getDid() != null && customer.getDictCustLevel().getDid() > 0) {
+			criteria.add(Restrictions.eq("dictCustLevel.did",customer.getDictCustLevel().getDid()));
+		}
+		if (customer.getCustSource() != null && !"".equals(customer.getCustSource())) {
+			criteria.add(Restrictions.like("custSource", "%" + customer.getCustSource() + "%"));
+		}
+		
+		return (List<Customer>) super.getHibernateTemplate().findByCriteria(criteria);
+	}
+
+	//查询所有客户等级
+	public List<Dict> findAllDict() {
+		return (List<Dict>) super.getHibernateTemplate().find("from Dict");
+	}
+}

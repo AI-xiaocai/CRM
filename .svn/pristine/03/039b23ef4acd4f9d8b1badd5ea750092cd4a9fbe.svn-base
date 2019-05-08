@@ -1,0 +1,11 @@
+package zhan.dao;
+
+import zhan.domain.User;
+
+public interface UserDao {
+
+	public void regist(User user);
+
+	public User login(User user);
+
+}

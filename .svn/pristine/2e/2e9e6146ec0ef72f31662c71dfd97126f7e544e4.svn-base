@@ -1,0 +1,8 @@
+package zhan.dao;
+
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+
+public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
+
+	
+}

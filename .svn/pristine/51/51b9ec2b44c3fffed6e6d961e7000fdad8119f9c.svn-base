@@ -1,0 +1,21 @@
+package zhan.dao;
+
+import java.util.List;
+
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+
+import zhan.domain.Visit;
+
+public class VisitDaoImpl extends BaseDaoImpl<Visit> implements VisitDao {
+
+	//添加客户拜访
+//	public void add(Visit visit) {
+//		super.getHibernateTemplate().save(visit);
+//	}
+
+	//查询客户拜访列表
+//	public List<Visit> findAll() {
+//		return (List<Visit>) super.getHibernateTemplate().find("from Visit");
+//	}
+	
+}

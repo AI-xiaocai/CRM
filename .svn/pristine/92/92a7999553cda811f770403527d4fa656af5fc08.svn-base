@@ -1,0 +1,30 @@
+package zhan.dao;
+
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+
+import zhan.domain.LinkMan;
+
+public class LinkManDaoImpl extends HibernateDaoSupport implements LinkManDao {
+
+	//添加联系人
+	public void add(LinkMan linkMan) {
+		super.getHibernateTemplate().save(linkMan);
+	}
+
+	//查询联系人列表
+	public List<LinkMan> findAll() {
+		return (List<LinkMan>) super.getHibernateTemplate().find("from LinkMan");
+	}
+
+	//条件查询联系人
+	public List<LinkMan> listCondition(LinkMan linkMan) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(LinkMan.class);
+		criteria.add(Restrictions.like("lkmName", "%" + linkMan.getLkmName() + "%"));
+		return (List<LinkMan>) super.getHibernateTemplate().findByCriteria(criteria);
+	}
+	
+}

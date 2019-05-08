@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="zhan.domain.LinkMan" table="t_linkman">
+		<id name="lid" column="lid">
+			<generator class="native"></generator>
+		</id>
+		<property name="lkmName" column="lkmName"></property>
+		<property name="lkmGender" column="lkmGender"></property>
+		<property name="lkmPhone" column="lkmPhone"></property>
+		<property name="lkmMobile" column="lkmMobile"></property>
+		
+		<!-- 表示联系人所属客户 -->
+		<many-to-one name="customer" class="zhan.domain.Customer" column="clid"></many-to-one>
+	</class>
+</hibernate-mapping>

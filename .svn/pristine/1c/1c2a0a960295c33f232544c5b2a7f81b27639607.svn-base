@@ -1,0 +1,15 @@
+package zhan.service;
+
+import javax.annotation.Resource;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import zhan.dao.CustomerDao;
+
+@Transactional
+public class CustomerService {
+	@Resource(name="customerDao")
+	private CustomerDao customerDao; //◊¢»ÎCustomerDao∂‘œÛ
+
+	
+}

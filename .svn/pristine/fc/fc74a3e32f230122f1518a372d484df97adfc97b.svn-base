@@ -1,0 +1,18 @@
+package zhan.dao;
+
+import java.util.List;
+
+import zhan.domain.Customer;
+
+public interface CustomerDao {
+
+	public void add(Customer customer);
+
+	public List<Customer> findAll();
+
+	public Customer findCustomerByCid(int cid);
+
+	public void delete(Customer c);
+
+
+}
